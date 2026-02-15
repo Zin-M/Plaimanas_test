@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAIMANAS - Luxury Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo">PLAIMANAS</div>
+        <nav>
+            <ul>
+                <li><a href="#">NEW ARRIVAL</a></li>
+                <li><a href="#">BEST SELLING</a></li>
+                <li><a href="#">EDITORIAL</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+        <div class="header-tools">
+            <button class="icon-btn search-btn">Search</button>
+            <button class="icon-btn cart-btn">Cart (0)</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-image">
+                <video autoplay muted loop playsinline poster="assets/DTS_THE_LEADER_Joey_Bania_Clips_ID10.mp4">
+                    <source src="assets/DTS_THE_LEADER_Joey_Bania_Clips_ID10.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Marquee Section -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span>NEW ARRIVAL</span>
+                <span class="separator">↔</span>
+                <span>BEST SELLING</span>
+                <span class="separator">↔</span>
+                <span>NEW ARRIVAL</span>
+                <span class="separator">↔</span>
+                <span>BEST SELLING</span>
+                <span class="separator">↔</span>
+                <span>NEW ARRIVAL</span>
+                <span class="separator">↔</span>
+                <span>BEST SELLING</span>
+            </div>
+        </div>
+
+        <!-- Collections & Featured -->
+        <section class="collections">
+            <div class="collection-item large" id="collection-01">
+                <img src="assets/c6b2c87677418227a1bb072efb7bec28f1a54014.jpg" alt="Collection 01 Texture">
+                <div class="collection-info">
+                    <h3>COLLECTION 01</h3>
+                    <p>Discover the latest trends in luxury fashion.</p>
+                </div>
+            </div>
+
+            <div class="collection-grid">
+                <div class="collection-item" id="collection-02">
+                    <img src="assets/f5a8b21b615bf2137dab5ecf7747b3b5503e057d.jpg" alt="Collection 02 Face">
+                    <div class="collection-info">
+                        <h3>COLLECTION 02</h3>
+                    </div>
+                </div>
+                <div class="collection-item" id="collection-03">
+                    <img src="assets/fe05c5d37eb2c0d3b5a0c02ddcc0cc05aa72320e.jpg" alt="Collection 03 Flower">
+                    <div class="collection-info">
+                        <h3>COLLECTION 03</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>DO YOU SHIP GLOBALLY?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, we ship to over 100 countries worldwide. Shipping times and costs vary depending on the
+                            destination.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>WHAT IS YOUR RETURN POLICY?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>We accept returns within 30 days of purchase. Items must be unworn and in their original
+                            condition.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>HOW DO I TRACK MY ORDER?</span>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Once your order ships, you will receive a tracking number via email.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inquiry Form -->
+        <section class="inquiry-section">
+            <h2>MAKE AN INQUIRY</h2>
+            <form id="inquiry-form">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="NAME" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="EMAIL" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="MESSAGE" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND INQUIRY</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">PLAIMANAS</div>
+            <div class="footer-links">
+                <a href="#">INSTAGRAM</a>
+                <a href="#">FACEBOOK</a>
+                <a href="#">TWITTER</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 PLAIMANAS. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
