@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Sticky Header ---
+
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -10,45 +10,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Parallax Effect ---
+
     const parallaxBg = document.querySelector('.parallax-bg');
     if (parallaxBg) {
         window.addEventListener('scroll', () => {
             const scrollValues = window.scrollY;
-            // Move text slower than scroll (parallax)
+
             parallaxBg.style.transform = `translate(-50%, -50%) translateY(${scrollValues * 0.3}px)`;
         });
     }
 
-    // --- Scroll Reveal Animations ---
+
     const revealElements = document.querySelectorAll('.reveal');
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Only animate once
+                observer.unobserve(entry.target);
             }
         });
     }, {
         root: null,
-        threshold: 0.15, // Trigger when 15% visible
+        threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // --- FAQ Accordion ---
+
     const accordionHeaders = document.querySelectorAll('.accordion-header');
 
     accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const item = header.parentElement;
 
-            // Toggle active class
+
             item.classList.toggle('active');
 
-            // Close other items (optional - keeps UI clean)
+
             accordionHeaders.forEach(otherHeader => {
                 const otherItem = otherHeader.parentElement;
                 if (otherItem !== item && otherItem.classList.contains('active')) {
@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Language Toggle ---
-    // --- Language Toggle (Dropdown) ---
+
+
     const languageSelector = document.querySelector('.language-selector');
     const languageText = document.getElementById('current-language');
     const languageDropdown = document.querySelector('.language-dropdown');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (languageSelector && languageDropdown && languageText) {
 
-        // Function to update dropdown visibility based on current selection
+
         const updateDropdownOptions = () => {
             const currentLang = languageText.textContent.trim();
             languageOptions.forEach(option => {
@@ -79,31 +79,31 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // Initial update
+
         updateDropdownOptions();
 
-        // Toggle dropdown on click
+
         languageSelector.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent immediate closing
+            e.stopPropagation();
             languageDropdown.classList.toggle('show');
         });
 
-        // Handle option selection
+
         languageOptions.forEach(option => {
             option.addEventListener('click', (e) => {
                 const selectedValue = e.target.getAttribute('data-value');
-                // Update text
+
                 languageText.textContent = selectedValue;
 
-                // Update dropdown options visibility
+
                 updateDropdownOptions();
 
-                languageDropdown.classList.remove('show'); // Close dropdown
+                languageDropdown.classList.remove('show');
                 e.stopPropagation();
             });
         });
 
-        // Close dropdown when clicking outside
+
         document.addEventListener('click', (e) => {
             if (!languageSelector.contains(e.target)) {
                 languageDropdown.classList.remove('show');
@@ -111,16 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Marquee Infinite Scroll (Clone) ---
+
     const marqueeContent = document.querySelector('.marquee-content');
     if (marqueeContent) {
-        // Clone the content to ensure seamless loop
+
         const clone = marqueeContent.cloneNode(true);
-        marqueeContent.parentElement.append(clone); // Append to container, not inside content
+        marqueeContent.parentElement.append(clone);
     }
 
-    // --- Editorial Overlay ---
-    // Let's try a robust selector based on text content since there are no IDs
+
+
     const navLinks = document.querySelectorAll('nav a');
     let editorialNavLink = null;
     navLinks.forEach(link => {
@@ -133,19 +133,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (editorialNavLink && editorialOverlay) {
         editorialNavLink.addEventListener('mouseenter', () => {
-            editorialOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            if (window.innerWidth > 900) { // Only on desktop
+                editorialOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         });
 
         editorialOverlay.addEventListener('click', () => {
             editorialOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
+        });
+    }
+
+    // --- Mobile Editorial Dropdown ---
+    const editorialToggle = document.querySelector('.editorial-toggle');
+    const editorialDropdown = document.querySelector('.editorial-dropdown');
+
+    if (editorialToggle && editorialDropdown) {
+        editorialToggle.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent navigation
+            editorialToggle.classList.toggle('active');
+            editorialDropdown.classList.toggle('active');
         });
     }
 
 
 
-    // --- Hamburger Menu ---
+
     const hamburger = document.querySelector('.hamburger-menu');
     const nav = document.querySelector('nav');
 
@@ -153,35 +167,37 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             nav.classList.toggle('active');
-            // Prevent scrolling when menu is open
+
             if (nav.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
+                document.body.classList.add('menu-open');
             } else {
                 document.body.style.overflow = '';
+                document.body.classList.remove('menu-open');
             }
         });
 
-        // Close menu when clicking a link
         const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 nav.classList.remove('active');
                 document.body.style.overflow = '';
+                document.body.classList.remove('menu-open');
             });
         });
     }
 
-    // --- FAQ Filters ---
+
     const faqFilters = document.querySelectorAll('.faq-filter-btn');
     const faqItems = document.querySelectorAll('.accordion-item');
 
     if (faqFilters.length > 0) {
         faqFilters.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons
+
                 faqFilters.forEach(b => b.classList.remove('active'));
-                // Add to clicked
+
                 btn.classList.add('active');
 
                 const filterValue = btn.getAttribute('data-filter');
